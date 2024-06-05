@@ -1,0 +1,35 @@
+Software Developer Course Assessment
+Quantitative Assessment Practice
+
+Course Name: Programming with JavaScript
+Current Week: (2024/06/03)
+Introduction:
+The purpose of this assessment is to help us understand how the class is doing in terms of the review material that we have covered during the previous couple of weeks. The only purpose of this assessment is for us to improve our approach to review and ensure that what we’re currently doing is an effective strategy. Completion of this assessment is mandatory - if you don’t submit a solution, it will be marked as incomplete. If you do submit a solution, it will be marked as complete, as you will receive full marks. 
+Again, the goal here is to help you all in the best way that we can, so please do be honest when answering the questions related to how long it took, which resources you used, etc. And please ensure that you do your own work – don't just copy off a friend to get it done, earnestly do your best with it. If you can’t get it completely working, give us what you have. While it will be graded, the grade will not count against you, it’s just a way for us to see where everybody is, and to know which concepts, if any, we, as a class, may be struggling with.
+Deadline: You will have until the end of the day on Tuesday June 11,2024 (4:00pm) to submit your assessment solutions. Please ensure you answer all the questions outlined in the instructions portion of this document as well in your submission.
+Instructions: Your name: _____________________
+You are allowed to complete the assessment problems below in whatever way you can but please answer the following questions/points as part of your submission:
+1.	How many hours did it take you to complete this assessment? (Please keep try to keep track of how many hours you have spent working on each individual part of this assessment as best you can - an estimation is fine; we just want a rough idea.)
+Answer: [your answers should be formatted like this]…
+2.	What online resources you have used? (My lectures, YouTube, Stack overflow etc.)
+3.	Did you need to ask any of your friends in solving the problems. (If yes, please mention name of the friend. They must be amongst your class fellows.)
+4.	Did you need to ask questions to any of your instructors? If so, how many questions did you ask (or how many help sessions did you require)?
+5.	Rate (subjectively) the difficulty of Making this all! from your own perspective, and whether you feel confident that you can solve a similar but different problem requiring some of the same techniques in the future now that you’ve completed this one.
+
+Objective: 
+Strings are a fundamental element of any programming language, and JavaScript is no different. To become proficient in any programming language you encounter in the future, it's crucial to be comfortable with strings and regular expressions. This QAP is designed to provide you with practical experience and mastery in working with strings and regular expressions. Utilize regular expressions effectively to tackle various questions and challenges.
+
+We have covered numerous string functions in our sessions, and there is a video recording of my lecture on regular expressions available - https://youtu.be/zSDQ0HAiLq4 - (please watch it if you haven't already 😊). Additionally, we hold review sessions every Friday. Our first session was on May 31, 2024 - https://keyincollege289.sharepoint.com/sites/ProgrammingConceptswithJavaScriptMay24-August24/Shared%20Documents/Class%20Meetings/Recordings/Review%20Session%20(Attendance%20not%20mandatory)-20240531_090114-Meeting%20Recording.mp4?web=1&referrer=Teams.TEAMS-ELECTRON&referrerScenario=MeetingChicletGetLink.view.view - (you can watch the recording if you need more clarity on regular expressions). Our next session will be on Friday, June 7, 2024, with the timing to be announced during the upcoming week.
+
+Additionally, Kara conducts TA sessions twice a week, providing great support. You can join these sessions on Mondays and Wednesdays to ask any questions you may have. Moreover, while working on this QAP, it is recommended that after submission, you contact Kara to discuss the problems you found most challenging and get some hands-on assistance with the given questions. If you still feel the need, Dr. Qurat ul ain or myself  can offer a session to go over the solutions to the problems.
+
+Requirements: 
+
+Please review the attached file “qap2.js.” It contains detailed problem descriptions and the basic structure of each function. Your task is to replace the comments in each function with your code, ensuring that you meet the requirements outlined in each question.
+
+Submission: 
+
+When you are finished, save all the resources in a folder with your first name followed by underscore and qap2. Example: Alan Smith folder will look like “alan_qap2”, zip it and submit it OR upload on github repository and share the link.  
+ 
+Enjoy coding! 
+
