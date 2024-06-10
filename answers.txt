@@ -1,16 +1,22 @@
 1.	How many hours did it take you to complete this assessment? (Please keep try to keep track of how many hours you have spent working on each individual part of this assessment as best you can - an estimation is fine; we just want a rough idea.)
 
-Answer: [your answers should be formatted like this]…
+Answer: I have spent roughly 9 hours on this assignemtn,
 
 2.	What online resources you have used? (My lectures, YouTube, Stack overflow etc.)
 
+Answer: I have used class lectures, personal notes, O'Reilly, and ChatGPT.
+
 3.	Did you need to ask any of your friends in solving the problems. (If yes, please mention name of the friend. They must be amongst your class fellows.)
+
+Answer: I did not ask anyone for help.
 
 4.	Did you need to ask questions to any of your instructors? If so, how many questions did you ask (or how many help sessions did you require)?
 
+Answer: I did not ask questions to any instructor
+
 5.	Rate (subjectively) the difficulty of Making this all! from your own perspective, and whether you feel confident that you can solve a similar but different problem requiring some of the same techniques in the future now that you’ve completed this one.
 
-
+Answer: This was moderately difficult. It was just enough to get me have to go back over and check my issues to try and further understand the issues, but not so much that was completely lost.
 
 
 <video src="" width=""></video>

@@ -228,6 +228,7 @@ function parseDateString(input) {
 }
 
 console.log(parseDateString("January 11, 2024"));
+console.log(parseDateString("07-21-2001"));
 console.log(parseDateString("01-01-01"));
 console.log("----------");
 
@@ -260,9 +261,26 @@ console.log("----------");
  *
  ******************************************************************************/
 
-function toDateString(value) {
-  // Replace this comment with your code...
+function toDateString(date) {
+  let date2;
+
+  if (date instanceof Date) {
+    date2 = input;
+  } else if (typeof date === "string") {
+    date2 = new Date(date);
+    if (!(date2 instanceof Date) || isNaN(date2.getTime())) {
+      throw new Error("Invalid Date object provided");
+    }
+    const year = date2.getFullYear().toString();
+    const month = (date2.getMonth() + 1).toString().padStart(2, "0");
+    const day = date2.getDate().toString().padStart(2, "0");
+    return `${year}-${month}-${day}`;
+  }
 }
+
+console.log(toDateString(parseDateString("January 11, 2024")));
+console.log(toDateString(parseDateString("2021-01-29")));
+console.log("----------");
 
 /*******************************************************************************
  * Problem 5: parse a geographic coordinate
@@ -288,14 +306,52 @@ function toDateString(value) {
  *
  ******************************************************************************/
 
-// function normalizeCoord(value) {
+function normalizeCoord(value) {
   try {
-    let value = value.replace(/,/g, "");
-    let [lat, lng] = value.split(/[\s-]+/);
+    let normalizedValue = value.replace(/[\[\]\s]/g, "");
+    let lat, lng;
+
+    if (value.includes("[")) {
+      [lng, lat] = normalizedValue.split(/,/);
+    } else {
+      [lat, lng] = normalizedValue.split(/,/);
+    }
+
+    lat = parseFloat(lat);
+    lng = parseFloat(lng);
+
+    if (isNaN(lat) || isNaN(lng)) {
+      throw new Error("Invalid coordinates");
+    }
+
+    if (lat > 90 || lat < -90) {
+      throw new Error("Latitude must be between -90 and 90");
+    }
+    if (lng > 180 || lng < -180) {
+      throw new Error("Longitude must be between -180 and 180");
+    }
+
+    let latDct = lat >= 0 ? "north" : "south";
+    let lngDct = lng >= 0 ? "east" : "west";
+
     let latString = String(lat);
-    let lngString = String(lng)
+    let lngString = String(lng);
+
+    console.log(
+      `Latitude: ${latString}° ${latDct}, Longitude: ${lngString}° ${lngDct}`
+    );
+
+    return { latString, lngString };
+  } catch (error) {
+    console.error("An error occurred:", error.message);
+    return null;
   }
 }
+
+console.log(normalizeCoord("42.9755, -77.4369"));
+console.log(normalizeCoord("[-77.4369, 42.9755]"));
+console.log(normalizeCoord("190, 16.5342"));
+console.log("----------");
 
 /*******************************************************************************
  * Problem 6: format any number of coordinates as a list in a string
@@ -324,8 +380,49 @@ function toDateString(value) {
  ******************************************************************************/
 
 function formatCoords(...values) {
-  // Replace this comment with your code...
+  let coordArray = [];
+  try {
+    values.forEach((value) => {
+      let normalizedValue = value.replace(/[\[\]\s]/g, "");
+      let lat, lng;
+      if (normalizedValue.includes("[")) {
+        [lng, lat] = normalizedValue.split(/,/);
+      } else {
+        [lat, lng] = normalizedValue.split(/,/);
+      }
+
+      lat = parseFloat(lat);
+      lng = parseFloat(lng);
+
+      coordArray.push({ lat, lng });
+    });
+
+    const validCoordinates = coordArray.filter((coord) => {
+      const validLat =
+        typeof coord.lat === "number" &&
+        !isNaN(coord.lat) &&
+        coord.lat >= -90 &&
+        coord.lat <= 90;
+      const validLng =
+        typeof coord.lng === "number" &&
+        !isNaN(coord.lng) &&
+        coord.lng >= -180 &&
+        coord.lng <= 180;
+      const validCoordinates = coordArray.join(",");
+      return validLat && validLng;
+    });
+
+    return validCoordinates;
+  } catch (error) {
+    console.error("An error occurred:", error.message);
+    return null;
+  }
 }
+
+console.log(
+  formatCoords("42.9755,-77.4369", "[-62.1234, 42.9755]", "300,-9000")
+);
+console.log("----------");
 
 /*******************************************************************************
  * Problem 7: determine MIME type from filename extension
@@ -554,8 +651,63 @@ function generateLicenseLink(licenseCode, targetBlank) {
  ******************************************************************************/
 
 function pureBool(value) {
-  // Replace this comment with your code...
+  const True = [
+    "Yes",
+    "yes",
+    "YES",
+    "Y",
+    "Oui",
+    "oui",
+    "OUI",
+    "O",
+    "t",
+    "TRUE",
+    "true",
+    "True",
+    "vrai",
+    "V",
+    "VRAI",
+  ];
+  const False = [
+    "No",
+    "no",
+    "NO",
+    "Non",
+    "non",
+    "NON",
+    "N",
+    "n",
+    "f",
+    "FALSE",
+    "false",
+    "False",
+    "FAUX",
+    "faux",
+    "Faux",
+  ];
+  const isTrue = True.includes(value);
+  const isFalse = False.includes(value);
+
+  if (value === true) return true;
+  if (isTrue || value > 1) return true;
+  if (value === false) return false;
+  if (isFalse || value < 1) return false;
+
+  if (value != true && value != false) {
+    throw new Error("Invalid value");
+  }
 }
+try {
+  console.log(pureBool("Yes"));
+  console.log(pureBool("oui"));
+  console.log(pureBool("N"));
+  console.log(pureBool(-3));
+  console.log(pureBool(true));
+  console.log(pureBool("Milk"));
+} catch (error) {
+  console.error(error.message);
+}
+console.log("----------");
 
 /*******************************************************************************
  * Problem 9 Part 2: checking for all True or all False values in a normalized list
@@ -571,17 +723,34 @@ function pureBool(value) {
  * throws on invalid data.
  ******************************************************************************/
 
-function every() {
-  // Replace this comment with your code...
+function every(...args) {
+  try {
+    return args.every((arg) => pureBool(arg) === true || arg >= 1);
+  } catch (error) {
+    return false; // Handle invalid data by returning false
+  }
 }
 
-function any() {
-  // Replace this comment with your code...
+function any(...args) {
+  try {
+    return args.some((arg) => pureBool(arg));
+  } catch (error) {
+    return false;
+  }
 }
 
-function none() {
-  // Replace this comment with your code...
+function none(...args) {
+  try {
+    return !args.some((arg) => pureBool(arg));
+  } catch (error) {
+    return false;
+  }
 }
+
+console.log(every("Y", "yes", 1));
+console.log(any("Y", "no", 1));
+console.log(none("Y", "invalid", 1));
+console.log("----------");
 
 /*******************************************************************************
  * Problem 10 - build a URL
