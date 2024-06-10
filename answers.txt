@@ -1,6 +1,6 @@
 1.	How many hours did it take you to complete this assessment? (Please keep try to keep track of how many hours you have spent working on each individual part of this assessment as best you can - an estimation is fine; we just want a rough idea.)
 
-Answer: I have spent roughly 9 hours on this assignemtn,
+Answer: I have spent roughly 11 hours on this assignemtn,
 
 2.	What online resources you have used? (My lectures, YouTube, Stack overflow etc.)
 
@@ -16,7 +16,7 @@ Answer: I did not ask questions to any instructor
 
 5.	Rate (subjectively) the difficulty of Making this all! from your own perspective, and whether you feel confident that you can solve a similar but different problem requiring some of the same techniques in the future now that you’ve completed this one.
 
-Answer: This was moderately difficult. It was just enough to get me have to go back over and check my issues to try and further understand the issues, but not so much that was completely lost.
+Answer: This was moderately difficult. It was just enough to get me have to go back over and check my issues in order to further understand them, but not so much that was completely lost. While I am still not fully confident that I could do this on my own, I certainly gained a lot of knowledge and would have to rely less on outside help.
 
 
 <video src="" width=""></video>

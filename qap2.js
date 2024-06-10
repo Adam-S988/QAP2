@@ -5,7 +5,7 @@
  * Please update the following with your information:
  *
  *      Name: Adam Stevenson
- *      Date: June 3, 2024
+ *      Date: June 3-11, 2024
  */
 
 /*******************************************************************************
@@ -384,35 +384,30 @@ function formatCoords(...values) {
   try {
     values.forEach((value) => {
       let normalizedValue = value.replace(/[\[\]\s]/g, "");
-      let lat, lng;
-      if (normalizedValue.includes("[")) {
-        [lng, lat] = normalizedValue.split(/,/);
-      } else {
-        [lat, lng] = normalizedValue.split(/,/);
-      }
+      let [lng, lat] = normalizedValue.split(/,/);
 
       lat = parseFloat(lat);
       lng = parseFloat(lng);
 
-      coordArray.push({ lat, lng });
+      if (
+        typeof lat === "number" &&
+        !isNaN(lat) &&
+        lat >= -90 &&
+        lat <= 90 &&
+        typeof lng === "number" &&
+        !isNaN(lng) &&
+        lng >= -180 &&
+        lng <= 180
+      ) {
+        coordArray.push({ lat, lng });
+      }
     });
 
-    const validCoordinates = coordArray.filter((coord) => {
-      const validLat =
-        typeof coord.lat === "number" &&
-        !isNaN(coord.lat) &&
-        coord.lat >= -90 &&
-        coord.lat <= 90;
-      const validLng =
-        typeof coord.lng === "number" &&
-        !isNaN(coord.lng) &&
-        coord.lng >= -180 &&
-        coord.lng <= 180;
-      const validCoordinates = coordArray.join(",");
-      return validLat && validLng;
-    });
+    const coordStrings = coordArray.map(
+      (coord) => `(${coord.lat},${coord.lng})`
+    );
 
-    return validCoordinates;
+    return coordStrings.join(" ");
   } catch (error) {
     console.error("An error occurred:", error.message);
     return null;
@@ -422,6 +417,7 @@ function formatCoords(...values) {
 console.log(
   formatCoords("42.9755,-77.4369", "[-62.1234, 42.9755]", "300,-9000")
 );
+
 console.log("----------");
 
 /*******************************************************************************
@@ -625,8 +621,62 @@ console.log("----------");
  ******************************************************************************/
 
 function generateLicenseLink(licenseCode, targetBlank) {
-  // Replace this comment with your code...
+  const code = [
+    "CC-BY",
+    "CC-BY-NC",
+    "CC-BY-SA",
+    "CC-BY-ND",
+    "CC-BY-NC-SA",
+    "CC-BY-NC-ND",
+  ];
+
+  let urlGen, urlText, target;
+
+  if (!code.includes(licenseCode)) {
+    return `<a href="https://choosealicense.com/no-permission/">All Rights Reserved</a>`;
+  } else {
+    switch (licenseCode) {
+      case "CC-BY":
+        urlGen = "by";
+        urlText = "Creative Commons Attribution License";
+        break;
+      case "CC-BY-NC":
+        urlGen = "by-nc";
+        urlText = "Creative Commons Attribution-NonCommercial License";
+        break;
+      case "CC-BY-SA":
+        urlGen = "by-sa";
+        urlText = "Creative Commons Attribution-ShareAlike License";
+        break;
+      case "CC-BY-ND":
+        urlGen = "by-nd";
+        urlText = "Creative Commons Attribution-NoDerivs License";
+        break;
+      case "CC-BY-NC-SA":
+        urlGen = "by-nc-sa";
+        urlText =
+          "Creative Commons Attribution-NonCommercial-ShareAlike License";
+        break;
+      case "CC-BY-NC-ND":
+        urlGen = "by-nc-nd";
+        urlText = "Creative Commons Attribution-NonCommercial-NoDerivs License";
+        break;
+    }
+  }
+  if (targetBlank === true) {
+    target = ' target="_blank"';
+  } else {
+    target = "";
+  }
+
+  return `<a href="https://creativecommons.org/licenses/${urlGen}/4.0/"${target}>${urlText}</a>`;
 }
+
+console.log(generateLicenseLink("CC-BY-NC", true));
+console.log(generateLicenseLink("CC-BY-SA", false));
+console.log(generateLicenseLink("CC-BY-NC-ND"));
+console.log(generateLicenseLink("Test"));
+console.log("----------");
 
 /*******************************************************************************
  * Problem 9 Part 1: convert a value to a Boolean (true or false)
@@ -727,7 +777,7 @@ function every(...args) {
   try {
     return args.every((arg) => pureBool(arg) === true || arg >= 1);
   } catch (error) {
-    return false; // Handle invalid data by returning false
+    return false;
   }
 }
 
