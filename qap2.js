@@ -103,22 +103,16 @@ console.log("----------");
  * ******************************************************************************/
 
 function createVideo(src, width, controls) {
-  let widthURL = "";
-  if (!isNaN(width)) {
-    let widthInt = parseInt(width);
-    if (Number.isInteger(widthInt)) widthURL = widthInt;
-  }
+  let widthAttribute = typeof width === "number" ? ` width="${width}"` : "";
+  let controlsAttribute = controls ? "controls" : "";
 
-  let controlURL = " ";
-  if (controls === true) controlURL = "controls";
-  let videoURL = `<video src="${src}" ${
-    widthURL ? `width="${widthURL}"` : ""
-  } ${controlURL}></video>`;
-  videoURL = videoURL.replace(/width="\d+"\s*/g, function (match) {
-    return match.trim();
-  });
+  let videoURL = `<video src="${src}"${widthAttribute}${
+    widthAttribute && controlsAttribute ? " " : ""
+  }${controlsAttribute}></video>`;
+
   return videoURL;
 }
+
 console.log(
   createVideo(
     "http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4",
@@ -129,7 +123,7 @@ console.log(
 console.log(
   createVideo(
     "http://distribution.bbb3d.renderfarming.net/video/mp4/bbb_sunflower_1080p_60fps_normal.mp4",
-    "500",
+    500,
     false
   )
 );
@@ -141,6 +135,7 @@ console.log(
   )
 );
 console.log("----------");
+
 /*******************************************************************************
  * Problem 3: extract Date from date string
  *
@@ -882,4 +877,4 @@ function buildUrl(query, order, count, license) {
 }
 console.log(buildUrl("Dog", "ascending", 20, "cc-by"));
 console.log(buildUrl("Great White Shark", "descending", 35, "cc-by-sa"));
-console.log(buildUrl("Great White Shark", "descending", 60, "cc-by-nc"));
+console.log(buildUrl("Water Bear", "descending", 60, "cc-by-nc"));
